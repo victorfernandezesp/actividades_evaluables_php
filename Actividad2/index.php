@@ -21,6 +21,8 @@
         <input type="Submit" name="enviar" value="enviar">
     </form>
 
+    <a href="https://github.com/victorfernandezesp/actividades_evaluables_php/tree/main/Actividad2"> Link github</a>
+
 </body>
 
 </html>

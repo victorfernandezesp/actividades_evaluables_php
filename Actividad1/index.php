@@ -86,7 +86,9 @@ if (isset($_POST["num_verbos"]) && isset($_POST["nivel"])) {
         echo '<input type="submit" name="Solucion" value="Solucion">';
         echo '</form>';
     }
+
     ?>
+    <a href="https://github.com/victorfernandezesp/actividades_evaluables_php/tree/main/Actividad1"> Link github</a>
 </body>
 
 
