@@ -1,10 +1,11 @@
 <?php
-include("config/listado_verbos.php"); // Asegúrate de incluir la misma lista de verbos
+include("config/listado_verbos.php");
 
 if (isset($_POST['miVariable'])) {
     $miVariable = json_decode($_POST['miVariable'], true);
     if (isset($miVariable) && is_array($miVariable)) {
-        echo '<h2>Solucion - Verbos Seleccionados</h2>';
+        echo '<br/>';
+        echo '<h2>Tabla de Verbos - Solucion</h2>';
         echo '<table border="1">';
         echo '<tr>';
         echo '<th>Español</th>';
@@ -16,7 +17,7 @@ if (isset($_POST['miVariable'])) {
         foreach ($miVariable as $verbo) {
             echo '<tr>';
             foreach ($verbo as $valor) {
-                echo '<td>' . $valor . '</td>';
+                echo '<td style="background-color: green;">' . $valor . '</td>';
             }
             echo '</tr>';
         }

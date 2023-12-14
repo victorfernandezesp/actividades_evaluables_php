@@ -4,9 +4,8 @@ $numeroverbos = 0;
 if (isset($_POST["num_verbos"]) && isset($_POST["nivel"])) {
     $numeroverbos = (int) $_POST["num_verbos"];
     $dificultad = $_POST["nivel"];
-    $array_verbos_seleccionados = array(); // Mueve la inicialización del array aquí
+    $array_verbos_seleccionados = array();
 
-    // Selección de verbos aleatorios
     while (count($array_verbos_seleccionados) < $numeroverbos) {
         $numeroAleatorio = mt_rand(0, count($irregular_verbs) - 1);
         $verbo_aleatorio = implode("", $irregular_verbs[$numeroAleatorio]);
@@ -24,6 +23,8 @@ if (isset($_POST["num_verbos"]) && isset($_POST["nivel"])) {
         }
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +53,8 @@ if (isset($_POST["num_verbos"]) && isset($_POST["nivel"])) {
         echo '    <input type="submit" value="Enviar">';
         echo '</form>';
     } elseif ($numeroverbos > 0) {
-        echo '<form method="post" action="correccionosolucion.php">';
+        echo '<form method="post" action="corrije.php">';
+        echo '<br/>';
         echo '<h2>Tabla de Verbos - Nivel de Dificultad: ' . $dificultad . '</h2>';
         echo '<table border="1">';
         echo '<tr>';
@@ -64,11 +66,11 @@ if (isset($_POST["num_verbos"]) && isset($_POST["nivel"])) {
 
         for ($i = 0; $i < $numeroverbos; $i++) {
             $contador = 0;
-            $indicesAleatorios = (array) array_rand($array_verbos_seleccionados[$i], $dificultad); // Convertir a array
+            $indicesAleatorios = (array) array_rand($array_verbos_seleccionados[$i], $dificultad);
             echo '<tr>';
             foreach ($array_verbos_seleccionados[$i] as $key => $value) {
                 if (in_array($key, $indicesAleatorios)) {
-                    $value = ""; // Deja el valor en blanco para crear un hueco
+                    $value = "";
                     echo ' <td> <input type="text" name="hueco_' . $contador . '" value="' . $value . '"> </td>';
 
                 } else {
@@ -77,12 +79,18 @@ if (isset($_POST["num_verbos"]) && isset($_POST["nivel"])) {
                 $contador++;
             }
             echo '<input type="hidden" name="miVariable" value="' . htmlspecialchars(json_encode($array_verbos_seleccionados)) . '">';
+            echo '<input type="hidden" name="verbos" value="' . $numeroverbos . '">';
+            echo '<input type="hidden" name="dificultad" value="' . $dificultad . '">';
 
             echo '</tr>';
         }
 
         echo '</table>';
         echo '<input type="submit" value="Correjir">';
+        echo '</form>';
+        
+        echo '<form method="post" action="correccionosolucion.php">';
+        echo '<input type="hidden" name="miVariable" value="' . htmlspecialchars(json_encode($array_verbos_seleccionados)) . '">';
         echo '<input type="submit" name="Solucion" value="Solucion">';
         echo '</form>';
     }
