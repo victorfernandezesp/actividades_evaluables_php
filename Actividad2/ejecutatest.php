@@ -19,7 +19,7 @@ if (isset($_POST['selecciona'])) {
     <title>Test Autoescuela
         <?php echo $testSeleccionado + 1; ?>
     </title>
-    <link rel="stylesheet" href="styles/styles2.css">
+    <link rel="stylesheet" href="styles/styles1.css">
 </head>
 
 <body>
